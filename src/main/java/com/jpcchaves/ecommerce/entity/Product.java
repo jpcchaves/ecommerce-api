@@ -38,6 +38,10 @@ public class Product {
 
     private String imageUrl;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private ProductCategory productCategory;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
 
