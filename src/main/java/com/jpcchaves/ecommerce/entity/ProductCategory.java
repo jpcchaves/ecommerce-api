@@ -18,7 +18,8 @@ public class ProductCategory {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
             },
-            fetch = FetchType.LAZY
+            fetch = FetchType.LAZY,
+            mappedBy = "category"
     )
     private List<Product> products = new ArrayList<>();
 

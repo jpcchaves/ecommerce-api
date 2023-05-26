@@ -40,7 +40,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
-    private ProductCategory productCategory;
+    private ProductCategory category;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
