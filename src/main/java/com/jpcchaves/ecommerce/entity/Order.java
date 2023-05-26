@@ -6,6 +6,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "orders")
@@ -32,6 +34,10 @@ public class Order {
     @JoinColumn(name = "billind_address_id", referencedColumnName = "id")
     private Address billingAddress;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    private Set<OrderItem> orderItems = new HashSet<>();
+
     public Order() {
     }
 
@@ -42,7 +48,8 @@ public class Order {
                  String status,
                  Date createdAt,
                  Date updatedAt,
-                 Address billingAddress) {
+                 Address billingAddress,
+                 Set<OrderItem> orderItems) {
         this.id = id;
         this.orderTrackingNumber = orderTrackingNumber;
         this.totalQuantity = totalQuantity;
@@ -51,6 +58,7 @@ public class Order {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.billingAddress = billingAddress;
+        this.orderItems = orderItems;
     }
 
     public Long getId() {
@@ -115,5 +123,13 @@ public class Order {
 
     public void setBillingAddress(Address billingAddress) {
         this.billingAddress = billingAddress;
+    }
+
+    public Set<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(Set<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 }
