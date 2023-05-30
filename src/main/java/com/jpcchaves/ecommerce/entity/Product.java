@@ -58,6 +58,7 @@ public class Product {
                    BigDecimal price,
                    boolean active,
                    String imageUrl,
+                   ProductCategory category,
                    LocalDateTime createdAt,
                    LocalDateTime updatedAt) {
         this.id = id;
@@ -67,6 +68,7 @@ public class Product {
         this.price = price;
         this.active = active;
         this.imageUrl = imageUrl;
+        this.category= category;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -141,5 +143,13 @@ public class Product {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public ProductCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(ProductCategory category) {
+        this.category = category;
     }
 }
