@@ -1,5 +1,7 @@
 package com.jpcchaves.ecommerce.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -34,7 +36,7 @@ public class Category {
                     name = "sub_category_id", referencedColumnName = "id"
             )
     )
-    private Set<SubCategory> subCategory = new HashSet<>();
+    private Set<SubCategory> subCategories = new HashSet<>();
 
     public Category() {
     }
@@ -43,12 +45,12 @@ public class Category {
                     String name,
                     Date createdAt,
                     Date updatedAt,
-                    Set<SubCategory> subCategory) {
+                    Set<SubCategory> subCategories) {
         this.id = id;
         this.name = name;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.subCategory = subCategory;
+        this.subCategories = subCategories;
     }
 
     public Long getId() {
@@ -83,11 +85,12 @@ public class Category {
         this.updatedAt = updatedAt;
     }
 
+    @JsonProperty("subCategories")
     public Set<SubCategory> getSubCategory() {
-        return subCategory;
+        return subCategories;
     }
 
-    public void setSubCategory(Set<SubCategory> subCategory) {
-        this.subCategory = subCategory;
+    public void setSubCategory(Set<SubCategory> subCategories) {
+        this.subCategories = subCategories;
     }
 }
