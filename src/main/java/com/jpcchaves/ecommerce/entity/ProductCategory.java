@@ -1,9 +1,8 @@
 package com.jpcchaves.ecommerce.entity;
 
-import jakarta.persistence.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "product_categories")
@@ -13,27 +12,16 @@ public class ProductCategory {
     private String name;
     private String description;
 
-    @OneToMany(
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            },
-            fetch = FetchType.LAZY,
-            mappedBy = "category"
-    )
-    private List<Product> products = new ArrayList<>();
-
     public ProductCategory() {
     }
 
     public ProductCategory(Long id,
                            String name,
-                           String description,
-                           List<Product> products) {
+                           String description
+    ) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.products = products;
     }
 
     public Long getId() {
@@ -60,11 +48,4 @@ public class ProductCategory {
         this.description = description;
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
 }

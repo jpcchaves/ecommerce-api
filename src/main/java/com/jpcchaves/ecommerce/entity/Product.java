@@ -40,7 +40,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
-    private ProductCategory category;
+    private Category category;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -58,7 +58,7 @@ public class Product {
                    BigDecimal price,
                    boolean active,
                    String imageUrl,
-                   ProductCategory category,
+                   Category category,
                    LocalDateTime createdAt,
                    LocalDateTime updatedAt) {
         this.id = id;
@@ -68,7 +68,7 @@ public class Product {
         this.price = price;
         this.active = active;
         this.imageUrl = imageUrl;
-        this.category= category;
+        this.category = category;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -145,11 +145,11 @@ public class Product {
         this.updatedAt = updatedAt;
     }
 
-    public ProductCategory getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(ProductCategory category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 }
